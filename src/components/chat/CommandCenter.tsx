@@ -7,7 +7,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 export function CommandCenter() {
-  const { messages, addMessage, isLoading, setIsLoading, setHighlightedDates, setStats, setTheme } = useAppStore();
+  const { 
+    messages, addMessage, isLoading, setIsLoading, 
+    setHighlightedDates, setStats, setTheme, 
+  } = useAppStore();
   const [input, setInput] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -30,7 +33,11 @@ export function CommandCenter() {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userMessage, history: messages }),
+        body: JSON.stringify({ 
+          message: userMessage, 
+          history: messages,
+          currentDate: new Date().toISOString()
+        }),
       });
 
       if (!response.ok) throw new Error('API request failed');
@@ -48,7 +55,8 @@ export function CommandCenter() {
         try {
           const parsed = JSON.parse(jsonStr);
           if (parsed.action === 'HIGHLIGHT_DATES') {
-            setHighlightedDates(parsed.dates || []);
+            const dates = parsed.dates || [];
+            setHighlightedDates(dates);
             setStats(parsed.stats || null);
             if (parsed.theme) setTheme(parsed.theme);
           }

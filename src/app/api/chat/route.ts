@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { message, history = [] } = await req.json();
+    const { message, history = [], currentDate } = await req.json();
 
     const currentYear = new Date().getFullYear();
     // Get holidays for current year and next year (e.g., 2026 for World Cup)
@@ -21,6 +21,9 @@ export async function POST(req: Request) {
     const systemPrompt = `
 Actúas como un experto en optimización de tiempo libre y logística de viajes. 
 Tu objetivo es ayudar al usuario a planear sus vacaciones en Colombia, maximizando los días de descanso efectivos usando el mínimo de días de vacaciones por ley.
+
+CONTEXTO TEMPORAL:
+- Fecha Actual: Hoy es ${currentDate ? new Date(currentDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}.
 
 REGLAS CRÍTICAS:
 - Festivos en Colombia: Ten en cuenta la Ley 51 de 1983 (Ley Emiliani). Si un festivo cae en domingo, se mueve al lunes. Usa la siguiente lista de festivos provista como contexto real: ${holidaysStr}.
