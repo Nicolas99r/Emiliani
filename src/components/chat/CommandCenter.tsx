@@ -40,7 +40,10 @@ export function CommandCenter({ isMobileHidden }: { isMobileHidden?: boolean }) 
         }),
       });
 
-      if (!response.ok) throw new Error('API request failed');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'API request failed');
+      }
 
       const data = await response.json();
       const text = data.response;
