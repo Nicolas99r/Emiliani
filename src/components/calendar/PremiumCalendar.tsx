@@ -76,11 +76,11 @@ export function PremiumCalendar() {
             months: "flex flex-col lg:flex-row gap-8 w-full justify-around",
             month: "w-full space-y-4",
             table: "w-full h-full border-collapse",
-            head_row: "flex w-full justify-between mb-2",
+            head_row: "flex w-full justify-between mb-2 gap-1 sm:gap-2",
             head_cell: "text-muted-foreground font-medium text-[0.9rem] w-full text-center",
-            row: "flex w-full mt-2 justify-between",
+            row: "flex w-full mt-2 justify-between gap-1 sm:gap-2",
             cell: "w-full aspect-square relative p-0 text-center text-sm focus-within:relative focus-within:z-20",
-            day: "w-full h-full rounded-2xl flex items-center justify-center text-lg hover:bg-muted transition-all duration-300",
+            day: "w-full h-full rounded-2xl flex items-center justify-center text-lg px-1 hover:bg-muted transition-all duration-300",
           }}
           modifiers={{
             vacation: vacationDates,
