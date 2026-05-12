@@ -6,7 +6,7 @@ import { Send, Plane, CalendarDays, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-export function CommandCenter() {
+export function CommandCenter({ isMobileHidden }: { isMobileHidden?: boolean }) {
   const { 
     messages, addMessage, isLoading, setIsLoading, 
     setHighlightedDates, setStats, setTheme, 
@@ -75,7 +75,7 @@ export function CommandCenter() {
   };
 
   return (
-    <aside className="w-[400px] h-full flex flex-col glass-panel z-10 relative border-r border-border/50">
+    <aside className={`w-full md:w-[400px] h-full flex-col glass-panel z-10 relative border-r border-border/50 ${isMobileHidden ? 'hidden md:flex' : 'flex'}`}>
       <div className="p-6 pb-2 border-b border-border/30">
         <h1 className="text-2xl font-bold flex items-center gap-2">
           <Plane className="text-primary w-6 h-6" />
@@ -117,7 +117,7 @@ export function CommandCenter() {
         )}
       </div>
 
-      <div className="p-6 pt-2 bg-gradient-to-t from-background to-transparent">
+      <div className="p-6 pt-2 pb-24 md:pb-6 bg-gradient-to-t from-background to-transparent">
         <form onSubmit={handleSubmit} className="relative flex items-center">
           <Input 
             value={input}

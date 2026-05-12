@@ -12,7 +12,7 @@ const NEXT_HOLIDAYS = [
 
 export function EmptyState() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-8 lg:p-12">
+    <div className="w-full min-h-full flex flex-col items-center justify-start md:justify-center p-8 lg:p-12 pb-32 md:pb-12">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
